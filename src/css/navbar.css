@@ -1,0 +1,63 @@
+/* #container_nav{
+    margin:0;
+    padding: 0;
+    width:100%;
+    height: 80px;
+    background-color: aqua;
+    overflow: hidden;
+}
+
+#ul_nav > li{
+    margin-left:20px;
+    margin-right:30px;
+    font-size: large;
+    list-style: none;
+}
+#ul_nav a:active{
+    color:red
+}
+#ul_nav a:hover{
+    color: blueviolet;
+}
+#navbar{
+    color:#c5aa6a
+} */
+ /* Mobile Dropdown Animation */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+.navbar-nav .nav-link.active {
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+.custom-auth-btn {
+  background-color: #e3f2fd;
+  color: #0d6efd;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.custom-auth-btn:hover {
+  background-color: #d0e7fb; /* slightly darker on hover */
+  color: #084298;           /* slightly deeper blue */
+}
+.container-fluid {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.custom-navbar {
+  background-color: #000000 !important;  /* Replace with your desired color */
+  color: rgb(255, 255, 255);
+}
+.bg-info {
+  background-color: #000000 !important;
+}
+@media (max-width: 768px) {
+  .map-button {
+    top: 160px !important; /* Adjust based on dropdown height */
+    right: 10px;
+    z-index: 1000;
+  }
+}
