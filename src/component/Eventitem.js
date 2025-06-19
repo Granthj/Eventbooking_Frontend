@@ -2,14 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 // import { FaTicketAlt, FaMapMarkerAlt } from 'react-icons/fa'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicketAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import EventInfo from './EventInfo';
-import EventModal from './EventModal';
-import Modal from 'react-modal';
+// import EventInfo from './EventInfo';
+// import EventModal from './EventModal';
+// import Modal from 'react-modal';
 import PaymentGateway from './PaymentGateway';
 import { AuthContext } from '../utils/authContext';
 import { PaymentContext } from '../utils/paymentId';
-import customer from '../../../model/customer';
-import { set } from '../../../model/cart';
 const { useNavigate } = require('react-router-dom');
 const Eventitem = (props) => {
     const [id, setId] = useState(null);
@@ -31,7 +29,6 @@ const Eventitem = (props) => {
         setEventId(id);
         if (setAuth.CustomerId === null || setAuth.Email === null) {
             navigate('/login')
-            // alert("Please login to book an event");
         }
         else {
             displayRazorpay(id);
@@ -68,8 +65,6 @@ const Eventitem = (props) => {
                 credentials: 'include'
             }).then(response => {
                 return response.json();
-            }).then(data => {
-                // console.log(data, "killer")
             })
         }
 
@@ -80,7 +75,6 @@ const Eventitem = (props) => {
             navigate('/login');
             return;
         }
-        // console.log("IN CART ",customerId,token,val)
         const queryForCart = {
             query: `
             mutation{
@@ -105,7 +99,6 @@ const Eventitem = (props) => {
         }).then(response => {
             return response.json();
         }).then(data => {
-            // console.log(data, "cart")
         }).catch(e => {
             throw new Error(e);
         })
@@ -130,11 +123,6 @@ const Eventitem = (props) => {
     const event = props.events.map((val, i) => {
         return <div className="d-flex justify-content-center align-items-center" style={{ marginTop: "20px" }} key={i}>
             <div className="card text-center shadow" style={{ width: '700px', position: 'relative' }}>
-                {/* <i
-            className="fa-regular fa-bookmark position-absolute top-0 end-0 m-2 text-danger"
-            role="button"
-            onClick={()=>saveInCart(val._id)}
-            ></i> */}
                 <div className="row g-0">
                     <div className="col-md-5 p-0">
                         

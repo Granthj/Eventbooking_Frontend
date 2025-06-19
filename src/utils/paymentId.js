@@ -1,7 +1,6 @@
-import {createContext, useEffect, useState} from 'react';
+import {createContext, useState} from 'react';
 
 export const PaymentContext = createContext(()=>{
-    // const [tokenData,setTokenData] = useState()
 })
 export const PaymentProvider = (props)=>{
     const [paymentId,setpaymentId] = useState();

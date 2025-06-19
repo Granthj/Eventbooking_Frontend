@@ -10,7 +10,6 @@ const Profile = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-    // const [emailError, setEmailError] = useState(false);
     const [emailchange,setEmailChange] = useState(false);
     const [updated, setUpdated] = useState(false);
     const [show, setShow] = useState(false);
@@ -31,7 +30,6 @@ const Profile = () => {
         setUpdated(false);
     }
     useEffect(() => {
-        console.log("useEffect in Profile",setAuth.CustomerId);
         const getData = {
             query: `
             query{
@@ -63,7 +61,6 @@ const Profile = () => {
                 gender: data.data.customerData.gender || '',
                 email: data.data.customerData.email || ''
             }));
-            // console.log(data.data.customerData, "HELLO");
         })
 
     }, [])

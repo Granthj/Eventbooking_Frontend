@@ -16,9 +16,7 @@ L.Icon.Default.mergeOptions({
 });
 
 const Search = (props) => {
-    // const navigate = useNavigate();
     const location = useLocation();
-    // console.log(location.pathname);
     const [query, setQuery] = useState('');
     const [debouncedQuery, setDebouncedQuery] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
@@ -39,13 +37,11 @@ const Search = (props) => {
         setSearchQuery('');
         setSuggestions([]);
         window.history.replaceState({}, '');
-        // if (location.state?.replaceSearch) {
-        // }
     }, [location])
     useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedQuery(query);
-        }, 500); // 500ms debounce
+        }, 500);
 
         return () => clearTimeout(handler);
     }, [query]);
@@ -73,7 +69,6 @@ const Search = (props) => {
                     display_name: `${city}, ${state}`,
                 };
             })
-            // console.log("City State", cityState);
             setSuggestions(cityState);
 
 
@@ -205,7 +200,6 @@ const Search = (props) => {
 
         // Remove any extra whitespace left after removal
         cleanName = cleanName.replace(/\s+/g, ' ').trim();
-        // console.log("Cleaned Location Name:", cleanName);
         return cleanName;
     };
 
@@ -223,7 +217,6 @@ const Search = (props) => {
                 let city = props.city || props.town || props.county || null;
                 const state = props.state || null;
                 city = cleanLocationName(city);
-                // console.log("REVERSE", city);
                 const cityName = city ? (state ? `${city}, ${state}` : city) : 'Unknown location';
                 if (cityName === 'Unknown location') {
                     setSearchQuery('');
@@ -248,8 +241,8 @@ const Search = (props) => {
                 }
                 setSelectedLocation(null);
             }
-        } catch (error) {
-            // console.log('Reverse geocoding failed:', error);
+        } catch{
+            
         }
     };
     useEffect(() => {
@@ -260,11 +253,9 @@ const Search = (props) => {
     }, [mapClickCounter]);
     const handleMapSelectionDone = () => {
         if (selectedLocation === null) {
-            // console.log('No location selected', selectedLocation);
             setSearchQuery('');
             return;
         }
-        // console.log('Selected Location:', selectedLocation.name);
         if (selectedLocation.name === 'Unknown location') {
             setSearchQuery('');
             alert('invalid location selected');
@@ -273,7 +264,6 @@ const Search = (props) => {
         else {
             setSearchQuery(selectedLocation.name);
             setEventsByValue(selectedLocation.name);
-            // navigate(`/${selectedLocation.name}`, { state: { location: selectedLocation.name } });
             setSuggestions([]);
             if (props.onCitySelected) {
                 props.onCitySelected(selectedLocation);

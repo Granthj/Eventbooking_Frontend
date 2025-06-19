@@ -1,8 +1,7 @@
-import react, { useRef, useState, useContext } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Button, Spinner } from "react-bootstrap";
 import '../css/form.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 
 const SignUp = () => {
@@ -54,9 +53,6 @@ const SignUp = () => {
             return response.json();
         }).then(data => {
             if(data.errors){
-                // const existEmail = data.errors.some(err =>
-                //         err.message.toLowerCase().includes('exists')
-                //     );
                 throw new Error(data.errors[0].message);
             }
             else{
@@ -96,7 +92,6 @@ const SignUp = () => {
             }
         }).catch(err => {
             setShow(true)
-            // setOtpError(true);
             setErrorMessage(err.message)
         })
 
@@ -156,10 +151,7 @@ const SignUp = () => {
         if (name === 'email') {
             setEmailExistError(false);
         }
-        // if (name === 'password') {
-        //     setPasswordError(false);
-        // }
-         if (name === 'confirmpassword' || name === 'password') {
+        if (name === 'confirmpassword' || name === 'password') {
             setConfirmPasswordError(false);
         }
     }
@@ -197,7 +189,6 @@ const SignUp = () => {
                 throw new Error(data.errors[0].message);
             }
             else{
-                console.log("data Submitted")
                 setDone(true);
 
             }

@@ -26,7 +26,6 @@ const Login = ()=>{
     }
     const submitHandler = (e)=>{
         e.preventDefault();
-        console.log(email,password)
         const query = {
             query:`
                 query{
@@ -47,24 +46,12 @@ const Login = ()=>{
         }).then(response => {
             return response.json();
         }).then(data => {
-            console.log("DETA",data.data)
             if(data.errors){
-                // const existEmail = data.errors.some(err =>
-                //     err.message.toLowerCase().includes('already')
-                // );
-                // if (existEmail) {
-                //     setEmailExistError(true);
-                // }
                 setIsError(true);
-                // throw new Error(data.errors[0].message);
             }
             else{
-                console.log("DATAFROM COOKIE",data.data.login.CustomerId, data.data.login.Email);
                 setAuth(data.data.login.CustomerId, data.data.login.Email);
-                // localStorage.setItem('customerId', data.data.login.CustomerId);
-                // localStorage.setItem('token', data.data.login.token);
                 navigate(referer || "/");
-                // navigate("/");
             }
         })
     }
@@ -119,36 +106,36 @@ const Login = ()=>{
                                     <button type="submit" className='btn btn-secondry' onClick={toLogin}>Create an account</button>
                                 </div>
                                   <div className="text-end mt-3"> {/* Align to right with margin-top */}
-                                                        <Link
-                                                            to="/forgot-password"
-                                                            className="text-decoration-none"
-                                                            style={{
-                                                                color: '#6c757d',
-                                                                transition: 'all 0.3s ease',
-                                                                fontWeight: '500',
-                                                                fontSize: '0.9rem',
-                                                                display: 'inline-block',
-                                                                position: 'relative',
-                                                                paddingBottom: '2px'
-                                                            }}
-                                                            onMouseEnter={(e) => e.target.style.color = '#0d6efd'}
-                                                            onMouseLeave={(e) => e.target.style.color = '#6c757d'}
-                                                        >
-                                                            Forgot Password?
-                                                            <span
-                                                                style={{
-                                                                    position: 'absolute',
-                                                                    bottom: 0,
-                                                                    left: 0,
-                                                                    width: '0%',
-                                                                    height: '1px',
-                                                                    backgroundColor: '#0d6efd',
-                                                                    transition: 'width 0.3s ease'
-                                                                }}
-                                                                className="hover-underline"
-                                                            />
-                                                        </Link>
-                                                    </div>
+                                        <Link
+                                            to="/forgot-password"
+                                            className="text-decoration-none"
+                                            style={{
+                                                color: '#6c757d',
+                                                transition: 'all 0.3s ease',
+                                                fontWeight: '500',
+                                                fontSize: '0.9rem',
+                                                display: 'inline-block',
+                                                position: 'relative',
+                                                paddingBottom: '2px'
+                                            }}
+                                            onMouseEnter={(e) => e.target.style.color = '#0d6efd'}
+                                            onMouseLeave={(e) => e.target.style.color = '#6c757d'}
+                                        >
+                                            Forgot Password?
+                                            <span
+                                                style={{
+                                                    position: 'absolute',
+                                                    bottom: 0,
+                                                    left: 0,
+                                                    width: '0%',
+                                                    height: '1px',
+                                                    backgroundColor: '#0d6efd',
+                                                    transition: 'width 0.3s ease'
+                                                }}
+                                                className="hover-underline"
+                                            />
+                                        </Link>
+                                    </div>
                         </div>
 
                     </div>

@@ -1,6 +1,5 @@
-// import '../css/forgotPassword.css';
 import { Link, useNavigate } from "react-router-dom";
-import { Modal, Button, Spinner } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { useEffect, useState } from 'react';
 import NewPassword from './NewPassword';
 
@@ -62,22 +61,17 @@ const ForgotPassword = () => {
                     setSessionToken(result.sessionToken);
                 }
             }
-            // console.log(data, "response")
         }).catch(err => {
-            // console.log(err.message, "error");
             setChild(true);
             setOtpMatched(true);
             setShow(true);
             setErrorMessage(err.message);
         })
-        // .finally(() => {
-        //     setIsLoading(false);
-        // });
+
     }
     useEffect(() => {
         if (sessionToken) {
-            // console.log("JJkkkJJ", sessionToken)
-            setChild(false); // Move setChild here
+            setChild(false); 
         }
     }, [sessionToken]);
     const sendEmail = async () => {
@@ -96,7 +90,6 @@ const ForgotPassword = () => {
                 'Content-Type': 'application/json',
             }
         }).then((response) => {
-            console.log("IM IN fetch", response)
             return response.json();
         }).then((data) => {
             if (!resend_Otp) {
@@ -112,7 +105,6 @@ const ForgotPassword = () => {
                     throw new Error(data.errors[0].message);
                 }
                 else {
-                    // setIsLoading(true);
                     setEmailError(false);
                     setSendOtp(true);
                 }
@@ -120,7 +112,6 @@ const ForgotPassword = () => {
             setResend_Otp(false);
         })
             .catch(err => {
-                console.log(err.message, "error");
                 setEmailError(true);
             })
             .finally(() => {
@@ -135,7 +126,6 @@ const ForgotPassword = () => {
     const confirmOtp = (otp) => {
         const stringOtp = otp.join('');
         verifyOtp(stringOtp)
-        console.log(stringOtp);
     };
 
     const resendOtp = () => {

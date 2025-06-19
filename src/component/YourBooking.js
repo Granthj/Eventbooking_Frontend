@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTicketAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../utils/authContext';
 import ModalCancel from './ModalCancelBooking';
 import '../css/yourBookings.css';
@@ -9,7 +9,6 @@ const YourBooking = () => {
     const setAuth = useContext(AuthContext);
     const [cancel, Cancelbooking] = useState(false);
     const [state, setState] = useState(false);
-    const [newState, setNewState] = useState();
     const [boolState, setBoolState] = useState(false);
     const [bookingData, customerBookingData] = useState([]);
     const [bookingID, setBookingID] = useState();
@@ -147,8 +146,6 @@ const YourBooking = () => {
 
     return (
         <>
-            {/* {state ? <li style={{ textAlign: "center", listStyleType: "none" }}>{CustomerBooking}</li>
-                : <h1>Sorry,No Booking...</h1>} */}
 
 
             <div className="container py-5">

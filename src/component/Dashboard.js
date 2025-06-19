@@ -33,19 +33,14 @@ const Dashboard = () => {
             method:'POST',
             body:formData
         })
-    //       if (!res.ok) {
-    //         const text = await res.text(); // get raw text to debug
-    //         throw new Error(`Upload failed: ${res.status} - ${text}`);
-    // }
+  
 
     const data = await res.json();
-    setImageUrl(data.imageUrl);
-    console.log(data.imageUrl);
+        setImageUrl(data.imageUrl);
     }
     const valueConfirmHandler = (e) => {
         e.preventDefault();
         if(imageUrl === null){
-            console.log('HELOO FROM RETURN')
             return;
         }
         let event = { title, price, date, desc };
@@ -67,10 +62,8 @@ const Dashboard = () => {
             body: JSON.stringify(requestBody),
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': "Bearer" + " " + tokenData
             }
         }).then(response => {
-            // if (response.status !== 200 && response.status !== 201) throw new Error('Failed');
             return response.json();
         }).then(data => {
         })
@@ -94,33 +87,6 @@ const Dashboard = () => {
         }
         `
     }
-    // useEffect(() => {
-    //     function fetchData() {
-    //         fetch('http://localhost:7000/graphql', {
-    //             method: "POST",
-    //             body: JSON.stringify(eventReqBody),
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 // 'Authorization': "Bearer" + " " + tokenData
-    //             }
-    //         })
-    //             .then(response => {
-    //                 // if(response.status !== 200 && response.status !== 201) throw new Error('Failed');
-    //                 isSet(true);
-    //                 return response.json();
-    //             }).then(data => {
-    //                 if (is) {
-    //                     setValue(data.data.event); 
-    //                     setBool(true);
-    //                     // console.log("puy",data.data.event);  
-    //                 }
-    //             })
-    //         }
-    //         fetchData();
-    //     }, [valueConfirmHandler])
-    // if(bool){
-    //     // console.log(value[0].bookedBy[0].email,"jcj")
-    // }
     return (
         <>
             <h1>HELLO</h1>
@@ -155,7 +121,6 @@ const Dashboard = () => {
             </Modal>}
             {<button className='btn btn-primary' onClick={setModalHandler}>Create Event</button>}
             <br></br>
-            {/* {bool&&<AdminEventList data={value}></AdminEventList>} */}
 
         </>
     )

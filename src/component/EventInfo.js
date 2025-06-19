@@ -15,7 +15,6 @@ const EventInfo = (props)=>{
     return(
         <>
             {info&&id===props.value._id&&<h1>{props.value.title}</h1>}
-            {/* {<button className='btn btn-primary' onClick={cancelHandler}>hide</button>} */}
         </>
 
     )

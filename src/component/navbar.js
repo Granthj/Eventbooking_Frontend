@@ -17,7 +17,6 @@ const Navbar = (props) => {
 
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev);
-        // setIsDropdownOpen(!isDropdownOpen)
     };
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -42,7 +41,6 @@ const Navbar = (props) => {
         logOut();
         navigate('/');
     }
-    console.log("setAuth", setAuth.Email,setAuth.CustomerId);
     return (
         <>
             <nav className='navbar navbar-expand-lg  sticky-top' style={{ backgroundColor: "#0d6efd", minHeight: "60px" }}>
@@ -72,44 +70,6 @@ const Navbar = (props) => {
                             <span className="navbar-toggler-icon"></span>
                         </button>
 
-                        {/* Dropdown panel */}
-                        {/* {isDropdownOpen && (
-                            <div className='dropdown-menu-box shadow'
-                                style={{ backgroundColor: '#f8f9fa', borderRadius: '8px' }}
-                            >
-                                <ul className='nav flex-column'>
-                                    {setAuthData.token && (
-                                        <>
-                                            <li className='nav-item'>
-                                                <NavLink to='/profile' className='nav-link' onClick={toggleDropdown}>My profile</NavLink>
-                                            </li>
-                                            <li className='nav-item'>
-                                                <NavLink to='/bookings' className='nav-link' onClick={toggleDropdown}>Bookings</NavLink>
-                                            </li>
-                                            <li className='nav-item'>
-                                                <NavLink to='/events-cart' className='nav-link' onClick={toggleDropdown}>Cart</NavLink>
-                                            </li>
-                                        </>
-                                    )}
-                                </ul>
-                                <div className="my-2">
-                                    <Search onCitySelected={props.onCitySelected} />
-                                </div>
-                                {setAuthData.token ? (
-                                    <button onClick={() => { toggleDropdown(); logOut(); }} className='btn btn-danger w-100' style={{
-                                        backgroundColor: "#e3f2fd",
-                                        color: "#0d6efd",
-                                        border: "none"
-                                    }}>Logout</button>
-                                ) : (
-                                    <Link to='/login' className='btn btn-success w-100' style={{
-                                        backgroundColor: "#e3f2fd",
-                                        color: "#0d6efd",
-                                        border: "none"
-                                    }} onClick={toggleDropdown}>Login</Link>
-                                )}
-                            </div>
-                        )} */}
                     </div>
 
                     {/* Desktop view */}

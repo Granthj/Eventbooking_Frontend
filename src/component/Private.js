@@ -16,7 +16,6 @@ import Login from "./Login";
 const Private = ({path})=>{
     const setAuth = useContext(AuthContext);
     const {admintokenData,setAdminTokenData} = useContext(AdminAuthContext);
-    console.log("Private in",path,admintokenData)
     const navigate = useNavigate();
 try{
      if (setAuth.loading) {

@@ -2,14 +2,12 @@ import { useState } from "react";
 import Modal from 'react-modal';
 
 const AdminEventList = (props) => {
-    // console.log(props.data,"tuio")
     const [modal,useModal] = useState(false);
     const [index,setIndex] = useState(0);
     const modalCloseHandler = ()=>{
         useModal(false);
     }
     const setStateHandler = (i)=>{
-        console.log(i)
         setIndex(i);
         useModal(true);
     }

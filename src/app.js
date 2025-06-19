@@ -1,30 +1,22 @@
-import { useState, useContext, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap-icons/font/bootstrap-icons.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
 import ReactDom from 'react-dom/client';
 import './css/App.css'
 import Navbar from './component/navbar.js';
 import EventsPage from './component/Events.js';
-import YourBooking from './component/YourBooking.js';
 import Footer from './component/Footer.js';
 import Private from './component/Private.js';
 import Admin from './component/Admin.js';
-import Dashboard from './component/Dashboard.js';
 import AdminNavbar from './component/AdminNavbar.js';
-import { AuthContext, AuthProvider } from './utils/authContext.js';
-import { AdminAuthContext, AdminAuthProvider } from './utils/adminAuth.js'
-import { createBrowserRouter, RouterProvider, BrowserRouter, Routes, Route, useNavigate, Outlet, createRoutesFromElements, useNavigation } from 'react-router-dom';
+import { AuthProvider } from './utils/authContext.js';
+import { AdminAuthProvider } from './utils/adminAuth.js'
+import { createBrowserRouter, RouterProvider, useNavigate, Outlet} from 'react-router-dom';
 import CustomersList from './component/Customers.js';
-import Eventitem from './component/Eventitem.js';
-import PaymentGateway from './component/PaymentGateway.js';
-import { PaymentProvider, PaymentContext } from './utils/paymentId.js';
+import { PaymentProvider } from './utils/paymentId.js';
 import ForgotPassword from './component/ForgotPassword.js';
 import SignUp from './component/SignUp.js';
-import Login from './component/Login.js';
 import Error from './component/Error.js'
-// import NewPassword from './component/NewPassword.js';
+
 const AdminPanel = () => {
     return (
         <>
@@ -32,7 +24,6 @@ const AdminPanel = () => {
                 <AdminNavbar />
                 <Admin />
                 <Outlet />
-                {/* <Dashboard/> */}
             </AdminAuthProvider>
 
         </>
@@ -55,21 +46,14 @@ const AppLayOut = () => {
     };
     return (
         <div className="d-flex flex-column min-vh-100">
-            {/* 
-            <AuthProvider>
-                <PaymentProvider> */}
             <div className="app-wrapper">
                 <Navbar onCitySelected={handleCitySelected} />
-                {/* <YourBooking/> */}
                 <main className="flex-grow-1">
                     <Outlet />
-                    {/* <New /> */}
                 </main>
 
                 <Footer />
             </div>
-            {/* </PaymentProvider>
-            </AuthProvider> */}
         </div>
     )
 }

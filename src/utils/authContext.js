@@ -10,7 +10,6 @@ export const AuthProvider = (props) => {
     });
 
     useEffect(() => {
-        console.log("useEffect in AuthContext");
 
         fetch("http://localhost:7000/graphql", {
             method: "POST",
@@ -31,7 +30,6 @@ export const AuthProvider = (props) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log("PIPIPI", data);
 
             // ✅ Only call setAuth if data is valid
             if (data.data && data.data.checkLoggedIn) {
@@ -42,7 +40,6 @@ export const AuthProvider = (props) => {
             }
         })
         .catch(err => {
-            console.error("Auth check failed:", err);
             setAuth(null, null);
         });
     }, []);
@@ -56,7 +53,6 @@ export const AuthProvider = (props) => {
     };
 
     const logOut = () => {
-        console.log("Logging out...");
         setAuthData({
             CustomerId: null,
             Email: null,
@@ -77,13 +73,7 @@ export const AuthProvider = (props) => {
                     }
                 `
             })
-        }).then(res => res.json())
-          .then(data => {
-              console.log("Logout response:", data);
-          })
-          .catch(err => {
-              console.error("Logout failed:", err);
-          });
+        }).then(res => res.json());
     };
 
     return (

@@ -6,7 +6,6 @@ import { PaymentContext } from '../utils/paymentId';
 import { useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicketAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { set } from 'mongoose';
 const CartPage = () => {
     const setAuth = useContext(AuthContext);
     const [cartData, setCartData] = useState([]);
@@ -50,7 +49,6 @@ const CartPage = () => {
             return response.json();
         }
         ).then(data => {
-            console.log(data, "cart data")
             if (data.data === null) {
                 return;
             }
@@ -96,8 +94,6 @@ const CartPage = () => {
                 credentials: 'include'
             }).then(response => {
                 return response.json();
-            }).then(data => {
-                // console.log(data,"killer")
             })
         }
     }, [paymentId])
@@ -106,7 +102,6 @@ const CartPage = () => {
         setShow(true);
     }
     const onRemove = (item) => {
-        console.log(item.title, item._id, "remove")
         const queryForRemove = {
             query: `
                 mutation{

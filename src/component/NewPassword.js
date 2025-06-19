@@ -17,8 +17,6 @@ const NewPassword = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (newPassword !== confirmPassword) {
-            console.log("new", newPassword);
-            console.log("confirm", confirmPassword);
             setConfirmPasswordError(true);
             return;
         }
@@ -39,7 +37,6 @@ const NewPassword = (props) => {
             return response.json();
         }).then(data => {
             setSuccess(data.data.updateCustomerPassword);
-            console.log(data);
         })
 
     };

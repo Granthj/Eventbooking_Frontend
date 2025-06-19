@@ -12,7 +12,6 @@ const EventModal = (props) => {
         }
 
     }
-    // console.log(props.value.title,"kjvhdiuf")
     return (
         <div >
             <div className="modal-dialog">
