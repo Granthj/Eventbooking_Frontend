@@ -36,7 +36,7 @@ const Login = ()=>{
                     }
             `
         }
-          fetch('http://localhost:7000/graphql', {
+          fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

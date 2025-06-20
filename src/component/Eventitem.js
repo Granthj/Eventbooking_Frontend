@@ -2,9 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 // import { FaTicketAlt, FaMapMarkerAlt } from 'react-icons/fa'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicketAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-// import EventInfo from './EventInfo';
-// import EventModal from './EventModal';
-// import Modal from 'react-modal';
 import PaymentGateway from './PaymentGateway';
 import { AuthContext } from '../utils/authContext';
 import { PaymentContext } from '../utils/paymentId';
@@ -56,7 +53,7 @@ const Eventitem = (props) => {
                 }
                 `
             }
-            fetch('http://localhost:7000/graphql', {
+            fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
                 method: "POST",
                 body: JSON.stringify(queryForEvent),
                 headers: {
@@ -89,7 +86,7 @@ const Eventitem = (props) => {
                 }
             }   `
         }
-        fetch('http://localhost:7000/graphql', {
+        fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: "POST",
             body: JSON.stringify(queryForCart),
             headers: {

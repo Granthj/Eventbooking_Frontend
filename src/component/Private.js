@@ -1,12 +1,9 @@
 import { useContext,useEffect } from "react"
-import Error from "./Error";
 import { AuthContext } from "../utils/authContext"
 import { AdminAuthContext } from "../utils/adminAuth"
 import { Outlet, useNavigate, Navigate } from 'react-router-dom';
-// import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import YourBooking from './YourBooking';
 import Dashboard from "./Dashboard";
-import EventsPage from "./Events";
 import Spinner from "./Spinner";
 import Profile from "./Profile";
 import CartPage from "./CartPage";

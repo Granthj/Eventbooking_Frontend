@@ -15,7 +15,7 @@ const EmailChange = (props) => {
                 }
             `
         }
-        fetch('http://localhost:7000/graphql', {
+        fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: 'POST',
             body: JSON.stringify(query),
             headers: {
@@ -90,7 +90,7 @@ const EmailChange = (props) => {
                 }
         `
         }
-        fetch('http://localhost:7000/graphql', {
+        fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: 'POST',
             body: JSON.stringify(query),
             headers: {

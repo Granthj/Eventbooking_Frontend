@@ -5,7 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import L from 'leaflet';
 import 'leaflet-control-geocoder';
-import EventsPage from './Events';
 
 // Fix for default Leaflet marker icons
 delete L.Icon.Default.prototype._getIconUrl;
@@ -58,7 +57,7 @@ const Search = (props) => {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:7000/api/search-cities?query=${encodeURIComponent(query)}`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/search-cities?query=${encodeURIComponent(query)}`);
             const data = await response.json();
 
             const cityState = data.map(place => {

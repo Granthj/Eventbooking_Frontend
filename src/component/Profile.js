@@ -43,7 +43,7 @@ const Profile = () => {
         }
             `
         }
-        fetch('http://localhost:7000/graphql', {
+        fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: "POST",
             body: JSON.stringify(getData),
             headers: {
@@ -153,12 +153,11 @@ const Profile = () => {
         }
             `
         }
-        fetch('http://localhost:7000/graphql', {
+        fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: "POST",
             body: JSON.stringify(updateData),
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': "Bearer" + " " + token
             },
             credentials: 'include'
         })

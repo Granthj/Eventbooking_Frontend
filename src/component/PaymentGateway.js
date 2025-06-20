@@ -42,7 +42,7 @@ const PaymentGateway = () => {
                 }
             `
         };
-        const fetchData = await fetch('http://localhost:7000/graphql', {
+        const fetchData = await fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: "POST",
             body: JSON.stringify(paymentQuery),
             headers: {

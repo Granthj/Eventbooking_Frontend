@@ -38,7 +38,7 @@ const CartPage = () => {
             }
         }`
         }
-        fetch('http://localhost:7000/graphql', {
+        fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: "POST",
             body: JSON.stringify(queryForCartData),
             headers: {
@@ -85,7 +85,7 @@ const CartPage = () => {
                     }
                 }`
             }
-            fetch('http://localhost:7000/graphql', {
+            fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
                 method: "POST",
                 body: JSON.stringify(queryForEvent),
                 headers: {
@@ -111,7 +111,7 @@ const CartPage = () => {
                     }
                 }`
         }
-        fetch('http://localhost:7000/graphql', {
+        fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: "POST",
             body: JSON.stringify(queryForRemove),
             headers: {

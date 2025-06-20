@@ -29,7 +29,7 @@ const Dashboard = () => {
     const Upload = async ()=>{
         const formData = new FormData();
         formData.append('file',image)
-        const res = await fetch("http://localhost:7000/upload-img",{
+        const res = await fetch( `${process.env.REACT_APP_API_URL}/upload-img`,{
             method:'POST',
             body:formData
         })
@@ -57,7 +57,7 @@ const Dashboard = () => {
             }
             `
         }
-        fetch('http://localhost:7000/graphql', {
+        fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
             method: "POST",
             body: JSON.stringify(requestBody),
             headers: {
@@ -89,7 +89,7 @@ const Dashboard = () => {
     }
     return (
         <>
-            <h1>HELLO</h1>
+            <h1>DASHBOARD</h1>
             {state && <Modal close closeModal={closeHandler} confirm={valueConfirmHandler} >
                 <form encType="multipart/form-data">
                     <label htmlFor='title'>Title</label>
