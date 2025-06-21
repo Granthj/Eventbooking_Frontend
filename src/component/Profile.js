@@ -53,6 +53,11 @@ const Profile = () => {
         }).then(response => {
             return response.json();
         }).then(data => {
+            console.log(data, "data from profile");
+            if (data.errors) {
+                console.log(data.errors, "From profile");
+                return;
+            }
             setFormData(prev => ({
                 ...prev,
                 firstname: data.data.customerData.firstname || '',
