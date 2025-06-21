@@ -47,7 +47,7 @@ const Login = ()=>{
             return response.json();
         }).then(data => {
             if(data.errors){
-                crossOriginIsolated.log(data.errors,"From login")
+                console.log(data.errors,"From login")
                 setIsError(true);
             }
             else{
