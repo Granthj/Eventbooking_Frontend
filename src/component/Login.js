@@ -41,12 +41,13 @@ const Login = ()=>{
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
+            // credentials: 'include',
             body: JSON.stringify(query),
         }).then(response => {
             return response.json();
         }).then(data => {
             if(data.errors){
+                crossOriginIsolated.log(data.errors,"From login")
                 setIsError(true);
             }
             else{
