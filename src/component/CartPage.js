@@ -55,6 +55,9 @@ const CartPage = () => {
             }
             setCartData(data.data.getCart);
 
+        }).catch(err=>{
+        }).finally(()=>{
+            setLoading(false);
         })
 
     }
