@@ -30,7 +30,7 @@ const Profile = () => {
         setUpdated(false);
     }
     useEffect(() => {
-        console.log(setAuth.CustomerId,setAuth.Email, "setAuth from profile");
+        // console.log(setAuth.CustomerId,setAuth.Email, "setAuth from profile");
         const getData = {
             query: `
             query{
@@ -54,9 +54,9 @@ const Profile = () => {
         }).then(response => {
             return response.json();
         }).then(data => {
-            console.log(data, "data from profile");
+            // console.log(data, "data from profile");
             if (data.errors) {
-                console.log(data.errors, "From profile");
+                // console.log(data.errors, "From profile");
                 return;
             }
             setFormData(prev => ({

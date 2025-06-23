@@ -8,6 +8,7 @@ import '../css/yourBookings.css';
 const YourBooking = () => {
     const setAuth = useContext(AuthContext);
     const [cancel, Cancelbooking] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [state, setState] = useState(false);
     const [boolState, setBoolState] = useState(false);
     const [bookingData, customerBookingData] = useState([]);
@@ -66,7 +67,7 @@ const YourBooking = () => {
             Cancelbooking(false);
         })
     }
-    useEffect(() => {
+    const fetchBookingData = () => {
         if (setAuth.CustomerId && setAuth.Email) {
             fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
                 method: 'POST',
@@ -84,9 +85,20 @@ const YourBooking = () => {
                     setBoolState(true);
                     setBoolUpdate(false);
                 }
+            }).catch(err=>{
+            }).finally(()=>{
+                setLoading(false);
             })
         }
+    }
+    useEffect(() => {
+        fetchBookingData();
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 5000);
+        return () => clearTimeout(timer);
     }, [boolUpdate])
+
     const CustomerBooking = bookingData.map((val) => (
         <div key={val._id} className="d-flex justify-content-center">
             <div className="card mb-4 shadow-sm" style={{ width: '550px' }}>
@@ -103,7 +115,7 @@ const YourBooking = () => {
 
                     {/* Content on the right - takes 8 columns on md screens and up */}
                     <div className="col-md-5">
-                        <div className="card-body h-100 d-flex flex-column ps-0">
+                        <div className="card-body h-100 d-flex flex-column">
                             <h5 className="card-title">{val.title}</h5>
                             <p className="card-text text-muted">{val.desc}</p>
 
@@ -153,7 +165,14 @@ const YourBooking = () => {
                 <h2 className="text-center mb-4">Your Bookings</h2>
                 <div className="row justify-content-center">
                     <div className="col-lg-8">
-                        {CustomerBooking.length > 0 ? (
+                         {loading ? (
+                            <div className="text-center py-5">
+                                <div className="spinner-border text-dark" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        ) :
+                        CustomerBooking.length > 0 ? (
                             CustomerBooking
                         ) : (
                             <div className="text-center py-5">

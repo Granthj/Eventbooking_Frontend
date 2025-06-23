@@ -9,6 +9,7 @@ import { faTicketAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 const CartPage = () => {
     const setAuth = useContext(AuthContext);
     const [cartData, setCartData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [show, setShow] = useState(false);
     const [choosenData, setChoosenData] = useState();
     const [confirm, setConfirm] = useState(false);
@@ -59,6 +60,10 @@ const CartPage = () => {
     }
     useEffect(() => {
         fetchCartData();
+            const timer = setTimeout(() => {
+                setLoading(false);
+            }, 5000);
+            return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
@@ -143,7 +148,7 @@ const CartPage = () => {
 
                         {/* Content on the right - takes 8 columns on md screens and up */}
                         <div className="col-md-6">
-                            <div className="card-body h-100 w-100 d-flex flex-column ps-0">
+                            <div className="card-body h-100 w-100 d-flex flex-column">
                                 <h5 className="card-title">{item.title}</h5>
                                 <p className="card-text text-muted">{item.desc}</p>
 
@@ -193,7 +198,13 @@ const CartPage = () => {
                 <h2 className="text-center mb-4">Your Cart</h2>
                 <div className="row justify-content-center">
                     <div className="col-lg-8">
-                        {cartArr.length > 0 ? (
+                       {loading ? (
+                            <div className="text-center py-5">
+                                <div className="spinner-border text-dark" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        ) : cartArr.length > 0 ? (
                             cartArr
                         ) : (
                             <div className="text-center py-5">

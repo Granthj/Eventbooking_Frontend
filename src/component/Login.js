@@ -46,9 +46,9 @@ const Login = ()=>{
         }).then(response => {
             return response.json();
         }).then(data => {
-            console.log(data,"data from login");
+            // console.log(data,"data from login");
             if(data.errors){
-                console.log(data.errors,"From login")
+                // console.log(data.errors,"From login")
                 setIsError(true);
             }
             else{
