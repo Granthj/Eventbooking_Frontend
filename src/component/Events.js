@@ -66,7 +66,8 @@ const EventsPage = () => {
                 headers: {
                     'Content-Type': 'application/json',
 
-                }
+                },
+                credentials: 'include'
             })
                 .then(response => {
                     return response.json();

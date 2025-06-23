@@ -33,6 +33,7 @@ const NewPassword = (props) => {
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: 'include'
         }).then(response => {
             return response.json();
         }).then(data => {

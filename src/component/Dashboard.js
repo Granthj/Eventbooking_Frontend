@@ -62,7 +62,8 @@ const Dashboard = () => {
             body: JSON.stringify(requestBody),
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            credentials: 'include'
         }).then(response => {
             return response.json();
         }).then(data => {

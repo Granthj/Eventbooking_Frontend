@@ -38,7 +38,8 @@ const ForgotPassword = () => {
             body: JSON.stringify(sendOtpData),
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            credentials: 'include'
         }).then((response) => {
             return response.json();
         }).then((data) => {
@@ -88,7 +89,8 @@ const ForgotPassword = () => {
             body: JSON.stringify(sendEmailData),
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            credentials: 'include'
         }).then((response) => {
             return response.json();
         }).then((data) => {

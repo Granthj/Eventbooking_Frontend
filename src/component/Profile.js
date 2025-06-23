@@ -30,7 +30,7 @@ const Profile = () => {
         setUpdated(false);
     }
     useEffect(() => {
-        console.log(setAuth.CustomerID,setAuth.Email, "setAuth from profile");
+        console.log(setAuth.CustomerId,setAuth.Email, "setAuth from profile");
         const getData = {
             query: `
             query{

@@ -20,7 +20,8 @@ const EmailChange = (props) => {
             body: JSON.stringify(query),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'
         }).then(response => {
             return response.json();
         }).then(data => {
@@ -95,7 +96,8 @@ const EmailChange = (props) => {
             body: JSON.stringify(query),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'
         }).then(response => {
             return response.json();
         }).then(data => {
