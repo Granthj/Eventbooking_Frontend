@@ -98,7 +98,11 @@ const EventsPage = () => {
         setShow(false);
     }
     return (
-        <>  {!key ? <Shimmer></Shimmer> : <Eventitem events={events} city={citi}></Eventitem>}
+        <>  {!key ? <div className="text-center py-5">
+                                <div className="spinner-border text-dark" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div>
+                            </div> : <Eventitem events={events} city={citi}></Eventitem>}
             
                 {<Modal show={show} onHide={onClose} centered>
                     <Modal.Header closeButton style={{ backgroundColor: "#4CAF50", color: "white" }}>
