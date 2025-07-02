@@ -14,12 +14,13 @@ const EventsPage = () => {
     const [key, setKey] = useState(null);
     const [show, setShow] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-  
+    const [coldStart, setColdStart] = useState(false);
+
     useEffect(() => {
         if (citi !== city) {
             navigate('/');
         }
-  }, [city]);
+    }, [city]);
     const queryBody = citi
         ? {
             query: `
@@ -59,7 +60,11 @@ const EventsPage = () => {
             `,
         };
     useEffect(() => {
+        let timeoutId;
         function fetchData() {
+            timeoutId = setTimeout(() => {
+                setColdStart(true);
+            }, 3000);
             fetch(`${process.env.REACT_APP_API_URL}/graphql`, {
                 method: "POST",
                 body: JSON.stringify(queryBody),
@@ -72,9 +77,11 @@ const EventsPage = () => {
                 .then(response => {
                     return response.json();
                 }).then(data => {
+                    clearTimeout(timeoutId);
+                    setColdStart(false);
                     if (data.errors) {
                         setShow(true);
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             setShow(false);
                             navigate('/')
                         }, 2000);
@@ -84,40 +91,48 @@ const EventsPage = () => {
                         setEvents(data.data.eventsByLocation);
                         setKey(data.data.eventsByLocation);
                     }
-                    else if (data.data !== null) {  
+                    else if (data.data !== null) {
                         setEvents(data.data.event);
                         setKey(data.data.event);
                     }
                 }).catch(err => {
+                    clearTimeout(timeoutId);
+                    setColdStart(false);
                     setErrorMessage(err.message);
                 })
         }
         fetchData();
+        return () => clearTimeout(timeoutId);
     }, [citi])
-    const onClose = ()=>{
+    const onClose = () => {
         setShow(false);
     }
     return (
         <>  {!key ? <div className="text-center py-5">
-                                <div className="spinner-border text-dark" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
-                            </div> : <Eventitem events={events} city={citi}></Eventitem>}
-            
-                {<Modal show={show} onHide={onClose} centered>
-                    <Modal.Header closeButton style={{ backgroundColor: "#4CAF50", color: "white" }}>
-                        <Modal.Title>Fail!</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>{errorMessage}</p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="success" onClick={onClose}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </Modal>}
-            
+            <div className="spinner-border text-dark" role="status">
+                <span className="visually-hidden">Loading...</span>
+                {coldStart && (
+                    <p className="mt-3 text-muted small">
+                        ⏳ The server is waking up (hosted on Render's free tier). This may take a few minutes please wait...
+                    </p>
+                )}
+            </div>
+        </div> : <Eventitem events={events} city={citi}></Eventitem>}
+
+            {<Modal show={show} onHide={onClose} centered>
+                <Modal.Header closeButton style={{ backgroundColor: "#4CAF50", color: "white" }}>
+                    <Modal.Title>Fail!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>{errorMessage}</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="success" onClick={onClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>}
+
         </>
     )
 }
