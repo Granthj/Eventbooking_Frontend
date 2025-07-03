@@ -111,12 +111,12 @@ const EventsPage = () => {
         <>  {!key ? <div className="text-center py-5">
             <div className="spinner-border text-dark" role="status">
                 <span className="visually-hidden">Loading...</span>
-                {coldStart && (
-                    <p className="mt-3 text-muted small">
-                        ⏳ The server is waking up (hosted on Render's free tier). This may take a few minutes please wait...
-                    </p>
-                )}
             </div>
+                {coldStart && (
+                    <h4 className="mt-3 text-muted small">
+                        ⏳ The server is waking up (hosted on Render's free tier). This may take a few minutes<strong> please wait...</strong>
+                    </h4>
+                )}
         </div> : <Eventitem events={events} city={citi}></Eventitem>}
 
             {<Modal show={show} onHide={onClose} centered>
